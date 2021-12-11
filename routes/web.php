@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\IndexController;
 use App\Http\Controllers\VideosController;
+use App\Models\Video;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,9 +16,5 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-//Route::get('/videos',[VideosController::class,'index']);
-Route::get('/videos','VideosController@index');
+Route::get('/',[IndexController::class,'index'])->name('index.index');
