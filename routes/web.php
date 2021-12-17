@@ -18,3 +18,6 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/',[IndexController::class,'index'])->name('index.index');
+Route::get('/upload',function(){
+    return view('videos.create');
+});
