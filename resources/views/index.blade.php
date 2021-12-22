@@ -1,8 +1,6 @@
 @extends('layout')
 @section('content')
-
-
-            <h1 class="new-video-title"><i class="fa fa-bolt"></i> آخرین ویدیو‌ها</h1>
+        {{-- <h1 class="new-video-title"><i class="fa fa-bolt"></i> آخرین ویدیو‌ها</h1>
             <div class="row">
                 @foreach ($videos as $video)
                     <!-- video-item -->
@@ -23,7 +21,10 @@
                         </div>
                     </div>
                 @endforeach
-            <h1 class="new-video-title"><i class="fa fa-bolt"></i> پربازدیدترین ویدیوها</h1>
+            </div>
+             --}}
+        <x-latest-videos></x-latest-videos>
+        <h1 class="new-video-title"><i class="fa fa-bolt"></i> پربازدیدترین ویدیوها</h1>
             <div class="row">
                 @foreach ($mostViewedVideos as $video)
                     <!-- video-item -->
@@ -69,7 +70,4 @@
                 @endforeach
             </div>
         </div><!-- // row -->
-
-
-
-        @endsection
+@endsection

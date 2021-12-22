@@ -100,15 +100,8 @@
     </div><!-- // main-category -->
 
     <div class="site-output">
-        {{-- <pre dir="ltr">
-        {{var_dump(session()->all())}}</pre> --}}
-        @if (session('alert'))
-            <div class="alert alert-success">
-                {{ session('alert') }}
-            </div>
-        @endif
         <div id="all-output" class="col-md-12">
-            @yield('content')
+            {{$content}}
         </div>
     </div>
 
