@@ -20,3 +20,4 @@ use Illuminate\Support\Facades\Route;
 Route::get('/',[IndexController::class,'index'])->name('index');
 Route::get('/videos/create',[VideosController::class,'create'])->name('videos.create');
 Route::post('/videos',[VideosController::class,'store'])->name('videos.store');
+Route::get('/videos/{video}',[VideosController::class,'show'])->name('videos.show');

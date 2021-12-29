@@ -18,9 +18,13 @@ class VideosController extends Controller
     }
 
     public function store(StoreVideoRequest $request){
-        
+
         Video::create($request->all());
 
         return redirect()->route('index')->with('alert',__('messages.success'));
+    }
+
+    public function show(Request $request,Video $video){
+        return view('videos.show',compact('video'));
     }
 }
