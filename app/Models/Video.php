@@ -17,8 +17,8 @@ class Video extends Model
 
     protected $fillable=['name','url','thumbnail','slug','length','description'];
 
-    public function getLengthAttribute($value){
-        return gmdate("i:s",$value);
+    public function getLengthHumanReadableAttribute(){
+        return gmdate("i:s",$this->length);
     }
     public function getCreatedAtAttribute($value){
         return (new Verta($value))->formatDifference();
