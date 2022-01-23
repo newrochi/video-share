@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryVideoController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\VideosController;
 use App\Models\Video;
@@ -22,4 +23,6 @@ Route::get('/videos/create',[VideosController::class,'create'])->name('videos.cr
 Route::post('/videos',[VideosController::class,'store'])->name('videos.store');
 Route::get('/videos/{video}',[VideosController::class,'show'])->name('videos.show');
 Route::get('/videos/{video}/edit',[VideosController::class,'edit'])->name('videos.edit');
-Route::post('/videos/{video}',[VideosController::class,'update'])->name('videos.update');
+Route::post('/videos/{video}',[CategoryVideoController::class,'update'])->name('videos.update');
+
+Route::get('/categories/{category:slug}/videos',[CategoryVideoController::class,'index'])->name('categories.videos.index');

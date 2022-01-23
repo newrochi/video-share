@@ -10,6 +10,8 @@ class Video extends Model
 {
     use HasFactory;
 
+    protected $perPage=18;
+
     public function getRouteKeyName()
     {
         return "slug";
