@@ -84,7 +84,8 @@
         </div><!-- // container-full -->
     </header><!-- // header -->
 
-    <div id="main-category">
+    <x-header-menu></x-header-menu>
+    {{-- <div id="main-category">
         <div class="container-full">
             <div class="row">
                 <div class="col-md-12">
@@ -97,7 +98,7 @@
                 </div><!-- // col-md-14 -->
             </div><!-- // row -->
         </div><!-- // container-full -->
-    </div><!-- // main-category -->
+    </div><!-- // main-category --> --}}
 
     <div class="site-output">
         {{-- <pre dir="ltr">
