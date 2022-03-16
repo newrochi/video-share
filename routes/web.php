@@ -4,6 +4,7 @@ use App\Http\Controllers\CategoryVideoController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\VideosController;
 use App\Models\Video;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,3 +27,10 @@ Route::get('/videos/{video}/edit',[VideosController::class,'edit'])->name('video
 Route::post('/videos/{video}',[CategoryVideoController::class,'update'])->name('videos.update');
 
 Route::get('/categories/{category:slug}/videos',[CategoryVideoController::class,'index'])->name('categories.videos.index');
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
+require __DIR__.'/auth.php';
+

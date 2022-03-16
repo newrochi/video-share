@@ -30,3 +30,8 @@ mix.js([
 mix.copyDirectory('resources/css/fonts','public/css/fonts');
 mix.copyDirectory('resources/img','public/img');
 
+mix.js('resources/js/app.js', 'public/js').postCss('resources/css/app.css', 'public/css', [
+    require('postcss-import'),
+    require('tailwindcss'),
+    require('autoprefixer'),
+]);
