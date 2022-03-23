@@ -46,4 +46,8 @@ class User extends Authenticatable
         $hash=md5($this->attributes('email'));
         return "https://s.grvatar.com/avatar/$hash";
     }
+
+    public function videos(){
+        return $this->hasMany(Video::class);
+    }
 }

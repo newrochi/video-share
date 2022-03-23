@@ -41,4 +41,13 @@ class Video extends Model
             return $this->category->name;
         }
     }
+    public function user(){
+        return $this->belongsTo(User::class);
+    }
+    public function getOwnerNameAttribute(){
+        return $this->user?$this->user->name:"";
+    }
+    public function getOwnerAvatarAttribute(){
+        return $this->user?$this->user->avatar:"";
+    }
 }
