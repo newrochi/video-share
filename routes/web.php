@@ -3,8 +3,13 @@
 use App\Http\Controllers\CategoryVideoController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\VideosController;
+use App\Jobs\otp;
+use App\Jobs\ProcessVideo;
+use App\Mail\VerifyEmail;
+use App\Models\User;
 use App\Models\Video;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,3 +39,10 @@ Route::get('/dashboard', function () {
 
 require __DIR__.'/auth.php';
 
+/* Route::get('/jobs',function(){
+    otp::dispatch();
+}); */
+
+Route::get('/verify',function(){
+    Mail::to('aaa@yahoo.com')->send(new VerifyEmail(User::first()));
+});
