@@ -1,5 +1,6 @@
 <?php
 
+use App\Events\VideoCreated;
 use App\Http\Controllers\CategoryVideoController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\VideosController;
@@ -45,4 +46,9 @@ require __DIR__.'/auth.php';
 
 Route::get('/verify',function(){
     Mail::to('aaa@yahoo.com')->send(new VerifyEmail(User::first()));
+});
+
+Route::get('/event',function(){
+    $video=Video::first();
+    VideoCreated::dispatch($video);
 });
