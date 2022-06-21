@@ -4,11 +4,13 @@ use App\Events\VideoCreated;
 use App\Http\Controllers\CategoryVideoController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\VideosController;
+use App\Http\Middleware\CheckVerifyEmail;
 use App\Jobs\otp;
 use App\Jobs\ProcessVideo;
 use App\Mail\VerifyEmail;
 use App\Models\User;
 use App\Models\Video;
+use App\Notifications\VideoProcessed;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
@@ -26,7 +28,7 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::get('/',[IndexController::class,'index'])->name('index');
-Route::get('/videos/create',[VideosController::class,'create'])->name('videos.create');
+Route::get('/videos/create',[VideosController::class,'create'])->middleware('email.verified')->name('videos.create');
 Route::post('/videos',[VideosController::class,'store'])->name('videos.store');
 Route::get('/videos/{video}',[VideosController::class,'show'])->name('videos.show');
 Route::get('/videos/{video}/edit',[VideosController::class,'edit'])->name('videos.edit');
@@ -51,4 +53,10 @@ Route::get('/verify',function(){
 Route::get('/event',function(){
     $video=Video::first();
     VideoCreated::dispatch($video);
+});
+
+Route::get('/notify',function(){
+    $user=User::first();
+    $video=Video::first();
+    $user->notify(new VideoProcessed($video));
 });
