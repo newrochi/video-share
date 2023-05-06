@@ -28,7 +28,7 @@
                           مرا به خاطر بسپار
                   </label>
               </div>
-              <a href="#" class="forgot">رمز عبور من را فراموش کرده ام</a>
+              <a href="{{route('password.request')}}" class="forgot">رمز عبور من را فراموش کرده ام</a>
           </div>
 
           <button type="submit" class="btn btn-lg btn-primary full-width">ورود</button>

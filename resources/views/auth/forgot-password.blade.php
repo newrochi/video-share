@@ -1,36 +1,25 @@
-<x-guest-layout>
-    <x-auth-card>
-        <x-slot name="logo">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
-        </x-slot>
+@extends('auth-layout')
+@section('content')
+    <div id="log-in" class="site-form log-in-form">
 
-        <div class="mb-4 text-sm text-gray-600">
-            {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}
+        <div id="log-in-head">
+            <h1>بازیابی رمز عبور</h1>
+            <div id="logo"><a href="{{ route('index') }}"><img src="img/logo.png" alt=""></a></div>
         </div>
 
-        <!-- Session Status -->
-        <x-auth-session-status class="mb-4" :status="session('status')" />
+        <div class="form-output">
+            <x-validation-errors></x-validation-errors>
+            <form method="POST" action="{{ route('password.email') }}">
+                @csrf
+                <div class="form-group label-floating">
+                    <label class="control-label">ایمیل</label>
+                    <input name="email" class="form-control" placeholder="" type="email">
+                </div>
 
-        <!-- Validation Errors -->
-        <x-auth-validation-errors class="mb-4" :errors="$errors" />
+                <button type="submit" class="btn btn-lg btn-primary full-width">ارسال ایمیل بازیابی</button>
 
-        <form method="POST" action="{{ route('password.email') }}">
-            @csrf
+            </form>
+        </div>
+    </div>
 
-            <!-- Email Address -->
-            <div>
-                <x-label for="email" :value="__('Email')" />
-
-                <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <x-button>
-                    {{ __('Email Password Reset Link') }}
-                </x-button>
-            </div>
-        </form>
-    </x-auth-card>
-</x-guest-layout>
+@endsection
