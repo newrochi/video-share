@@ -50,4 +50,8 @@ class Video extends Model
     public function getOwnerAvatarAttribute(){
         return $this->user?$this->user->avatar:"";
     }
+
+    public function comments(){
+        return $this->hasMany(Comment::class)->orderBy('created_at','desc');
+    }
 }

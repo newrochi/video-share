@@ -2,6 +2,7 @@
 
 use App\Events\VideoCreated;
 use App\Http\Controllers\CategoryVideoController;
+use App\Http\Controllers\CommentController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\VideosController;
 use App\Http\Middleware\CheckVerifyEmail;
@@ -60,3 +61,5 @@ Route::get('/notify',function(){
     $video=Video::first();
     $user->notify(new VideoProcessed($video));
 });
+
+Route::post('videos/{video}/comments',[CommentController::class,'store'])->name('comments.store');

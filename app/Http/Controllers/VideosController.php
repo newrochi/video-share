@@ -40,6 +40,7 @@ class VideosController extends Controller
     }
 
     public function show(Request $request,Video $video){
+        $video->load('comments.user');
         return view('videos.show',compact('video'));
     }
     public function edit(Video $video){
