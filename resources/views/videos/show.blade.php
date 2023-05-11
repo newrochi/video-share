@@ -19,8 +19,8 @@
 
             <div class="video-share">
                 <ul class="like">
-                    <li><a class="deslike" href="#">1250 <i class="fa fa-thumbs-down"></i></a></li>
-                    <li><a class="like" href="#">1250 <i class="fa fa-thumbs-up"></i></a></li>
+                    <li><a class="deslike" href="{{route('dislikes.store',['likeable_type'=>'video','likeable_id'=>$video])}}">{{$video->dislikes_count}} <i class="fa fa-thumbs-down"></i></a></li>
+                    <li><a class="like" href="{{route('likes.store',['likeable_type'=>'video','likeable_id'=>$video])}}">{{$video->likes_count}} <i class="fa fa-thumbs-up"></i></a></li>
                 </ul>
                 <ul class="social_link">
                     <li><a class="facebook" href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a>
@@ -65,6 +65,10 @@
                                 </div>
                                 <a href="#" class="author-name">{{$comment->user->name}}</a>
                                 <time datetime="2017-03-24T18:18">{{$comment->created_at}}</time>
+                                <a class='deslike mr-5' style="color: #aaaaaa"
+                                        href="{{ route('dislikes.store', ['likeable_type' => 'comment', 'likeable_id' => $comment]) }}">{{ $comment->dislikes_count }}<i class="fa fa-thumbs-down"></i></a>
+                                <a class='like mr-5' style="color: #66c0c2"
+                                    href="{{ route('likes.store', ['likeable_type' => 'comment', 'likeable_id' => $comment]) }}">{{ $comment->likes_count }}<i class="fa fa-thumbs-up"></i></a>
                             </div>
                             <p>{{$comment->body}}</p>
                             <a href="#" class="reply">پاسخ</a>

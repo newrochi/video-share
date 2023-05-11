@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Video;
 use Illuminate\Cache\RateLimiting\Limit;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 use Illuminate\Http\Request;
@@ -48,6 +49,13 @@ class RouteServiceProvider extends ServiceProvider
             Route::middleware('web')
                 ->namespace($this->namespace)
                 ->group(base_path('routes/web.php'));
+        });
+
+        Route::bind('likeable_id',function($value,$route){
+            //dd($route->parameters['likeable_type']);
+            $model_name='App\\Models\\'.ucfirst($route->parameters['likeable_type']);
+            $route_key=(new $model_name)->getRouteKeyName();
+            return $model_name::where($route_key,$route->parameters['likeable_id'])->firstOrFail();
         });
     }
 

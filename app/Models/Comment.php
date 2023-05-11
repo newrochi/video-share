@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Likeable;
 use Hekmatinasser\Verta\Facades\Verta;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Comment extends Model
 {
-    use HasFactory;
+    use HasFactory,Likeable;
 
     protected $fillable=['user_id','body'];
 
@@ -19,6 +20,7 @@ class Comment extends Model
     public function user(){
         return $this->belongsTo(User::class);
     }
+
 
     /* public function getCreatedAtInHumanAttribute(){
         return (new Verta($this->created_at))->formatDifference();

@@ -2,13 +2,14 @@
 
 namespace App\Models;
 
+use App\Models\Traits\Likeable;
 use Hekmatinasser\Verta\Verta;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Video extends Model
 {
-    use HasFactory;
+    use HasFactory,Likeable;
 
     protected $perPage=18;
 
@@ -54,4 +55,6 @@ class Video extends Model
     public function comments(){
         return $this->hasMany(Comment::class)->orderBy('created_at','desc');
     }
+
+
 }
