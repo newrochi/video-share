@@ -16,8 +16,10 @@ use App\Models\User;
 use App\Models\Video;
 use App\Notifications\VideoProcessed;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -71,4 +73,11 @@ Route::post('videos/{video}/comments',[CommentController::class,'store'])->name(
 
 Route::get('{likeable_type}/{likeable_id}/like',[LikeController::class,'store'])->name('likes.store');
 Route::get('{likeable_type}/{likeable_id}/dislike',[DislikeController::class,'store'])->name('dislikes.store');
+
+Route::get('file',function(){
+    return Storage::download('contracts/icon.png');
+    return response()->file(storage_path('app/contracts/icon.png'));
+    $content=Storage::get('contracts/icon.png');
+    return Response::make($content)->header('content-type','image/png');
+});
 

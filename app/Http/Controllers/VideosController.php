@@ -9,6 +9,7 @@ use App\Models\Category;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class VideosController extends Controller
 {
@@ -30,10 +31,13 @@ class VideosController extends Controller
         return view('videos.create',compact('categories'));
     }
 
-    public function store(StoreVideoRequest $request){
+    public function store(Request $request){
 
-        /* dd($request->user());
-        Video::create($request->all()); */
+        $path=Storage::putFile('',$request->file);
+        //$url=Storage::url($path);
+        $request->merge([
+            'url'=>$path
+        ]);
         $request->user()->videos()->create($request->all());
 
         return redirect()->route('index')->with('alert',__('messages.success'));

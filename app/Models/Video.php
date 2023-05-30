@@ -6,6 +6,7 @@ use App\Models\Traits\Likeable;
 use Hekmatinasser\Verta\Verta;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Video extends Model
 {
@@ -47,6 +48,12 @@ class Video extends Model
     }
     public function getOwnerNameAttribute(){
         return $this->user?$this->user->name:"";
+    }
+    public function getVideoUrlAttribute(){
+        /* $full_url=env('APP_URL').'/storage/'.$this->url;
+        return ($full_url); */
+        //return Storage::url($this->url);
+        return '/storage/'.$this->url;
     }
     public function getOwnerAvatarAttribute(){
         return $this->user?$this->user->avatar:"";
