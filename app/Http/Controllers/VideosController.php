@@ -52,6 +52,7 @@ class VideosController extends Controller
     }
 
     public function update(UpdateVideoRequest $request,Video $video){
+        //$old_path=dd($video->path);
         if($request->hasFile('file')){
             $path=Storage::putFile('',$request->file);
             $request->merge([
