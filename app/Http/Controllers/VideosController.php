@@ -31,8 +31,7 @@ class VideosController extends Controller
         return view('videos.create',compact('categories'));
     }
 
-    public function store(Request $request){
-
+    public function store(StoreVideoRequest $request){
         $path=Storage::putFile('',$request->file);
         //$url=Storage::url($path);
         $request->merge([
@@ -52,7 +51,12 @@ class VideosController extends Controller
         return view('videos.edit',compact('video','categories'));
     }
 
-    public function update(UpdateVideoRequest $request,Video $video){
+    public function update(Request $request,Video $video){
+        $path=Storage::putFile('',$request->file);
+        //$url=Storage::url($path);
+        $request->merge([
+            'url'=>$path
+        ]);
         $video->update($request->all());
         return redirect()->route('videos.show',$video->slug)->with('alert',__('messages.video_edited'));
     }
