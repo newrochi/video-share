@@ -19,7 +19,7 @@ class Video extends Model
         return "slug";
     }
 
-    protected $fillable=['name','url','thumbnail','slug','length','description','category_id'];
+    protected $fillable=['name','path','thumbnail','slug','length','description','category_id'];
 
     public function getLengthHumanReadableAttribute(){
         return gmdate("i:s",$this->length);
@@ -53,7 +53,7 @@ class Video extends Model
         /* $full_url=env('APP_URL').'/storage/'.$this->url;
         return ($full_url); */
         //return Storage::url($this->url);
-        return '/storage/'.$this->url;
+        return '/storage/'.$this->path;
     }
     public function getOwnerAvatarAttribute(){
         return $this->user?$this->user->avatar:"";

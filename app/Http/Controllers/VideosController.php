@@ -35,7 +35,7 @@ class VideosController extends Controller
         $path=Storage::putFile('',$request->file);
         //$url=Storage::url($path);
         $request->merge([
-            'url'=>$path
+            'path'=>$path
         ]);
         $request->user()->videos()->create($request->all());
 
@@ -55,7 +55,7 @@ class VideosController extends Controller
         if($request->hasFile('file')){
             $path=Storage::putFile('',$request->file);
             $request->merge([
-                'url'=>$path
+                'path'=>$path
             ]);
         }
 
