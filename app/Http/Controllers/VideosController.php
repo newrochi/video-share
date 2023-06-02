@@ -7,6 +7,8 @@ use App\Http\Requests\StoreVideoRequest;
 use App\Http\Requests\UpdateVideoRequest;
 use App\Models\Category;
 use App\Models\Video;
+use App\Services\FFmpegAdaptor;
+use App\Services\VideoService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -32,13 +34,8 @@ class VideosController extends Controller
     }
 
     public function store(StoreVideoRequest $request){
-        $path=Storage::putFile('',$request->file);
-        //$url=Storage::url($path);
-        $request->merge([
-            'path'=>$path
-        ]);
-        $request->user()->videos()->create($request->all());
 
+        (new VideoService)->create($request->user(),$request->all());
         return redirect()->route('index')->with('alert',__('messages.success'));
     }
 
@@ -52,15 +49,8 @@ class VideosController extends Controller
     }
 
     public function update(UpdateVideoRequest $request,Video $video){
-        //$old_path=dd($video->path);
-        if($request->hasFile('file')){
-            $path=Storage::putFile('',$request->file);
-            $request->merge([
-                'path'=>$path
-            ]);
-        }
 
-        $video->update($request->all());
+        (new VideoService)->update($video,$request->all());
         return redirect()->route('videos.show',$video->slug)->with('alert',__('messages.video_edited'));
     }
 }

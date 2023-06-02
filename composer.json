@@ -12,7 +12,8 @@
         "hekmatinasser/verta": "^1.12",
         "laravel/framework": "^8.65",
         "laravel/sanctum": "^2.11",
-        "laravel/tinker": "^2.5"
+        "laravel/tinker": "^2.5",
+        "php-ffmpeg/php-ffmpeg": "^0.19.0"
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",

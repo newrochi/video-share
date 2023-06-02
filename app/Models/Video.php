@@ -55,6 +55,10 @@ class Video extends Model
         //return Storage::url($this->url);
         return '/storage/'.$this->path;
     }
+
+    public function getVideoThumbnailAttribute(){
+        return '/storage/'.$this->thumbnail;
+    }
     public function getOwnerAvatarAttribute(){
         return $this->user?$this->user->avatar:"";
     }

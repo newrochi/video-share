@@ -9,7 +9,8 @@
                             <div class="thumb">
                                 <div class="hover-efect"></div>
                                 <small class="time">{{$video->length}}</small>
-                                <a href="{{route('videos.show',$video->slug)}}"><img src="{{$video->thumbnail}}" alt=""></a>
+                                <a href="{{route('videos.show',$video->slug)}}"><img src="{{$video->thumbnail}}" alt="">
+                                </a>
                             </div>
                             <div class="video-info">
                                 <a href="{{route('videos.show',$video->slug)}}" class="title">{{$video->name}}</a>

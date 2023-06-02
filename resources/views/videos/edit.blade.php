@@ -13,10 +13,10 @@
                             <label>@lang('videos.name')</label>
                             <input name="name" type="text" value="{{$video->name}}" class="form-control" placeholder="@lang('videos.name')">
                         </div>
-                        <div class="col-md-6">
+                        {{-- <div class="col-md-6">
                             <label>@lang('videos.length')</label>
                             <input type="text" name="length" value="{{$video->length}}" class="form-control" placeholder="@lang('videos.length')">
-                        </div>
+                        </div> --}}
                         <div class="col-md-6">
                             <label>@lang('videos.slug')</label>
                             <input type="text" name="slug" value="{{$video->slug}}" class="form-control" placeholder="@lang('videos.slug')">
@@ -25,10 +25,10 @@
                             <label>@lang('videos.url')</label>
                             <input type="file" name="file" class="form-control">
                         </div>
-                        <div class="col-md-6">
+                        {{-- <div class="col-md-6">
                             <label>@lang('videos.thumbnail')</label>
                             <input type="text" name="thumbnail" value="{{$video->thumbnail}}" class="form-control" placeholder="@lang('videos.thumbnail')">
-                        </div>
+                        </div> --}}
                         <div class="col-md-6">
                             <label>@lang('videos.category')</label>
                             <select class="form-control" name="category_id" id="category">

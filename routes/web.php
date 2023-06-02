@@ -15,11 +15,14 @@ use App\Mail\VerifyEmail;
 use App\Models\User;
 use App\Models\Video;
 use App\Notifications\VideoProcessed;
+use App\Services\FFmpegAdaptor;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Storage;
+//use FFMpeg;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -81,3 +84,14 @@ Route::get('file',function(){
     return Response::make($content)->header('content-type','image/png');
 });
 
+Route::get('duration',function(){
+    $path='6ipgYvVGfaEsaErE5OZNW4ckOMPuiu211J28KEG7.mp4';
+    $service=new FFmpegAdaptor($path);
+    dd($service->getDuration());
+});
+
+Route::get('frame',function(){
+    $path='6ipgYvVGfaEsaErE5OZNW4ckOMPuiu211J28KEG7.mp4';
+    $service=new FFmpegAdaptor($path);
+    $service->getFrame();
+});
